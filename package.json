@@ -1,0 +1,12 @@
+{
+    "name": "place-data-sdk",
+    "main": "./sdks/place-data-js-sdk/src/PlaceData.js",
+    "version": "1.0.0",
+    "description": "Pacote para ajudar na interação entre o Iframe e host de dashboards do place-data.",
+    "author": "Place Data",
+    "exports": {
+        ".": {
+            "import": "./sdks/place-data-js-sdk/src/PlaceData.js"
+        }
+    }
+}
