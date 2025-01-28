@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  js-lib:
+    image: node:16.19.0-bullseye
+    volumes:
+      - ./sdks/place-data-js-sdk:/usr/src/lib
+    ports:
+      - "3023:3023"
+    entrypoint: /bin/sh
+    tty: true
+    # command: ["node", "/usr/src/lib/viz/src/PlaceDataViz.js"]
