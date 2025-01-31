@@ -177,7 +177,7 @@ export default class IframeMessenger {
             callback = (event) => {
                 if (isResponse(event.data) &&
                     event.data.id === id) {
-                        console.log('event.data', event.data)
+                        // console.log('event.data', event.data)
                     if (event.data.error) {
                         reject(parseErrorPayload(event.data.payload));
                     }
@@ -197,8 +197,10 @@ export default class IframeMessenger {
      * @param {MessageEvent} message - O evento de mensagem.
      */
     #messageHandler = (message) => {
-        const source = message.source; // TODO: entender pq isso e não this.source
-
+        const source = message.source;
+        if (source == null || source !== this.source ) {
+            return;
+        } // TODO: adicionar também validação da origem 
         if (this.debug) {
             console.log(`Mensagem da origem ${message.origin}:`, message.data);
         }
@@ -208,7 +210,7 @@ export default class IframeMessenger {
             this.#handleEvent(data);
         }
         if (isRequest(data)) {
-            console.log('isRequest', data)
+            // console.log('isRequest', data)
             this.#handleRequest(data, source);
         }
     };
@@ -219,7 +221,7 @@ export default class IframeMessenger {
      * @param {Function} handler - O manipulador da requisição.
      */
     registerRequestHandler(action, handler) {
-        console.log('registerRequestHandler', action, handler)
+        // console.log('registerRequestHandler', action, handler)
         this.#requestHandlers.set(action, handler);
     }
 
@@ -277,7 +279,7 @@ export default class IframeMessenger {
      * @param {Function} handler - O manipulador do evento.
      */
     registerEventsHandler(action, handler) {
-        console.log('registerRequestHandler', action, handler)
+        // console.log('registerRequestHandler', action, handler)
         this.#eventHandlers.set(action, handler);
     }
 
