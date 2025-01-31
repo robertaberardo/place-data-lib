@@ -197,11 +197,15 @@ export default class IframeMessenger {
      * @param {MessageEvent} message - O evento de mensagem.
      */
     #messageHandler = (message) => {
-        const source = message.source; // TODO: entender pq isso e não this.source
-
+        const source = message.source;
+        if (source == null || source !== this.source ) {
+            return;
+        } // TODO: adicionar também validação da origem 
         if (this.debug) {
             console.log(`Mensagem da origem ${message.origin}:`, message.data);
         }
+
+        message.sourcem
 
         const data = message.data;
         if (isEvent(data)) {
