@@ -44,8 +44,8 @@ export class IframeDashboardsService {
     /**
      * Notifica o pai de uma atualização.
      */
-    notifyUpdate = () => {
-        this.#iframeMessenger.sendEvent(DASHBOARDS_EVENT_ON_UPDATE);
+    notifyUpdate = (payload = {}) => {
+        this.#iframeMessenger.sendEvent(DASHBOARDS_EVENT_ON_UPDATE, payload);
     }
 }
 
