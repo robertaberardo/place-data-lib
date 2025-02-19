@@ -199,11 +199,16 @@ export default class IframeMessenger {
     #messageHandler = (message) => {
         const source = message.source;
         if (source == null || source !== this.source ) {
+            console.log("entrou no return")
             return;
         } // TODO: adicionar também validação da origem 
         if (this.debug) {
             console.log(`Mensagem da origem ${message.origin}:`, message.data);
         }
+
+        console.log("message origen", message.origin)
+        console.log("message source", source)
+        console.log("this.source", this.source)
 
         const data = message.data;
         if (isEvent(data)) {
